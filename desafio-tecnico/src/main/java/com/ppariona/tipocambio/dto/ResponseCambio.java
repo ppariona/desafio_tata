@@ -8,18 +8,21 @@ public class ResponseCambio implements Serializable{
 	private String monedaOrigen;
 	private String monedaDestino;
 	private String developer;
+	private Double tipoCambio;
 	
 	public ResponseCambio() {
 		super();
 	}
 
-	public ResponseCambio(Double monto, Double montoTipoCambio, String monedaOrigen, String monedaDestino, String developer) {
+	public ResponseCambio(Double monto, Double montoTipoCambio, String monedaOrigen, 
+			String monedaDestino, String developer, Double tipoCambio) {
 		super();
 		this.monto = monto;
 		this.montoTipoCambio = montoTipoCambio;
 		this.monedaOrigen = monedaOrigen;
 		this.monedaDestino = monedaDestino;
 		this.developer = developer;
+		this.tipoCambio = tipoCambio;
 	}
 
 	public Double getMonto() {
@@ -60,6 +63,14 @@ public class ResponseCambio implements Serializable{
 
 	public void setDeveloper(String developer) {
 		this.developer = developer;
+	}
+
+	public Double getTipoCambio() {
+		return tipoCambio;
+	}
+
+	public void setTipoCambio(Double tipoCambio) {
+		this.tipoCambio = tipoCambio;
 	}
 	
 	

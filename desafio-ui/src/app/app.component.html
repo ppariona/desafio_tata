@@ -405,7 +405,7 @@
               <div class="col-md-6">
                 <div class="row justify-content-end">
                   <button type="submit"  class="col-md btn btn-inverse btn-sm btn_s1 margin-gap">
-                    <i class="icofont icofont-search"></i>Consultar</button>
+                    <i class="icofont icofont-search"></i>Cambiar</button>
                 </div>
               </div>
             </div>
@@ -413,7 +413,7 @@
         </div>
       </form>
       <div class="sombra-e1 p-10">
-        <strong><h6>Respuesta Tipo de Cambio</h6></strong>
+        <strong><h6>Resultado del Cambio</h6></strong>
         <hr>
         <div class="row p-t-10">
 
@@ -439,6 +439,12 @@
             <label>Moneda Destino:</label>
             <input type="text" class="form-control w-100 form-control-sm"
               name="monedaDestinoRespuesta" [(ngModel)]="monedaDestinoRespuesta" readonly>
+          </div>
+          <br>
+          <div class="col-md-6">
+            <label>Tipo Cambio:</label>
+            <input type="text" class="form-control w-100 form-control-sm"
+              name="tipoCambioRespuesta" [(ngModel)]="tipoCambioRespuesta" readonly>
           </div>
           <br>
           <h4>Developer: {{developer}}</h4>

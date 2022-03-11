@@ -48,6 +48,7 @@ public class TipoCambioController {
 		responseCambio.setMontoTipoCambio(montoMultiplicado);
 		responseCambio.setMonedaOrigen(requestCambio.getMonedaOrigen());
 		responseCambio.setMonedaDestino(requestCambio.getMonedaDestino());
+		responseCambio.setTipoCambio(tipoCambio);
 		responseCambio.setDeveloper("Percy Pariona Alanya");
 		return responseCambio;
 	}

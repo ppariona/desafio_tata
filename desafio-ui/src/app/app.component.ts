@@ -18,6 +18,7 @@ export class AppComponent implements OnInit{
   montoTipoCambio ='';
   monedaOrigenRespuesta='';
   monedaDestinoRespuesta='';
+  tipoCambioRespuesta='';
 
   developer='';
   public tableData: Array<any>;
@@ -70,6 +71,7 @@ export class AppComponent implements OnInit{
           this.montoTipoCambio = response.montoTipoCambio;
           this.monedaOrigenRespuesta = response.monedaOrigen;
           this.monedaDestinoRespuesta = response.monedaDestino;
+          this.tipoCambioRespuesta = response.tipoCambio;
           this.developer = response.developer;
         }, (error: Error) => {
           console.log(error.message);
