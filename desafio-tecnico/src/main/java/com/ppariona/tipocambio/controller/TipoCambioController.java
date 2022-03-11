@@ -31,21 +31,38 @@ public class TipoCambioController {
 	@PostMapping("/cambio")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseCambio cambio(@RequestBody RequestCambio requestCambio) {
+		Double montoCalculado = (double) 0;
+		Double tipoCambio = (double) 0;
 		List<Cambio> listCambioBd = tipoCambioService.findAll();
 		
-		String monedaDestino = requestCambio.getMonedaDestino();
 		
-		List<Cambio> resultadoLista = listCambioBd.stream()
-		    .filter(a -> Objects.equals(a.getMoneda(), monedaDestino))
-		    .collect(Collectors.toList());
-		
-		Double tipoCambio = resultadoLista.get(0).getTipoCambio();
-		
-		Double montoMultiplicado = requestCambio.getMonto() * tipoCambio;
+		if(requestCambio.getMonedaOrigen().equals("soles")) {
+			if(requestCambio.getMonedaDestino().equals("dolares")) {
+				List<Cambio> resultadoLista = listCambioBd.stream()
+				    .filter(a -> Objects.equals(a.getMoneda(), "dolares"))
+				    .collect(Collectors.toList());
+				tipoCambio = resultadoLista.get(0).getTipoCambio();
+				montoCalculado = requestCambio.getMonto() / tipoCambio;	
+			}else {
+				tipoCambio = (double) 0;
+				montoCalculado = requestCambio.getMonto();	
+			}
+		} else if(requestCambio.getMonedaOrigen().equals("dolares")) {
+			if(requestCambio.getMonedaDestino().equals("soles")) {
+				List<Cambio> resultadoLista = listCambioBd.stream()
+				    .filter(a -> Objects.equals(a.getMoneda(), "soles"))
+				    .collect(Collectors.toList());
+				tipoCambio = resultadoLista.get(0).getTipoCambio();
+				montoCalculado = requestCambio.getMonto() * tipoCambio;	
+			}else {
+				tipoCambio = (double) 0;
+				montoCalculado = requestCambio.getMonto();	
+			}
+		}
 		
 		ResponseCambio responseCambio = new ResponseCambio();
 		responseCambio.setMonto(requestCambio.getMonto());
-		responseCambio.setMontoTipoCambio(montoMultiplicado);
+		responseCambio.setMontoTipoCambio(montoCalculado);
 		responseCambio.setMonedaOrigen(requestCambio.getMonedaOrigen());
 		responseCambio.setMonedaDestino(requestCambio.getMonedaDestino());
 		responseCambio.setTipoCambio(tipoCambio);
